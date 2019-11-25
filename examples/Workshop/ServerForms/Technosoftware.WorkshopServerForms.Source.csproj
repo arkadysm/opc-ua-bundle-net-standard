@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{313D4638-2F64-4218-84ED-0497252C06B8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Technosoftware.WorkshopServerForms</RootNamespace>
+    <AssemblyName>Technosoftware.WorkshopServerForms</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Selectors">
+      <HintPath>..\..\..\bin\net472\System.IdentityModel.Selectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\Technosoftware.WorkshopServerForms.Engineering.Classes.cs" />
+    <Compile Include="Model\Technosoftware.WorkshopServerForms.Engineering.Constants.cs" />
+    <Compile Include="Model\Technosoftware.WorkshopServerForms.Model.Classes.cs" />
+    <Compile Include="Model\Technosoftware.WorkshopServerForms.Model.Constants.cs" />
+    <Compile Include="Model\Technosoftware.WorkshopServerForms.Model.DataTypes.cs" />
+    <Compile Include="Model\Technosoftware.WorkshopServerForms.Operations.Classes.cs" />
+    <Compile Include="Model\Technosoftware.WorkshopServerForms.Operations.Constants.cs" />
+    <Compile Include="Technosoftware.WorkshopServerFormsConfiguration.cs" />
+    <Compile Include="Technosoftware.WorkshopServerFormsNodeManager.cs" />
+    <Compile Include="Namespaces.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Technosoftware.WorkshopServerForms.cs" />
+    <Compile Include="UaServerPlugin.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InstallConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="app.config" />
+    <None Include="Model\EngineeringDesign.csv" />
+    <None Include="Model\ModelDesign.csv" />
+    <None Include="Model\OperationsDesign.csv" />
+    <EmbeddedResource Include="Model\Technosoftware.WorkshopServerForms.Engineering.PredefinedNodes.uanodes" />
+    <EmbeddedResource Include="Model\Technosoftware.WorkshopServerForms.Model.PredefinedNodes.uanodes" />
+    <EmbeddedResource Include="Model\Technosoftware.WorkshopServerForms.Operations.PredefinedNodes.uanodes" />
+    <None Include="Technosoftware.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\EngineeringDesign.xml" />
+    <Content Include="Model\ModelDesign.xml" />
+    <Content Include="Model\OperationsDesign.xml" />
+    <Content Include="Technosoftware.WorkshopServerForms.Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Opc.Ua.Core\Opc.Ua.Core.csproj">
+      <Project>{84fe2f0a-4192-4d2c-8097-9c396c2375e8}</Project>
+      <Name>Opc.Ua.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Technosoftware\UaConfiguration\Technosoftware.UaConfiguration.csproj">
+      <Project>{63beb4b6-e96d-478e-b41d-b42ced6f8e7b}</Project>
+      <Name>Technosoftware.UaConfiguration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Technosoftware\UaServer\Technosoftware.UaServer.csproj">
+      <Project>{259094ef-b5fc-412d-8187-0ed7ff763d55}</Project>
+      <Name>Technosoftware.UaServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonControls\Technosoftware.CommonControls.Source.csproj">
+      <Project>{7ab3ee89-1d7d-45c7-9046-8cef65d07c64}</Project>
+      <Name>Technosoftware.CommonControls.Source</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerControls\Technosoftware.UaServer.Controls.Source.csproj">
+      <Project>{b399a878-2317-4955-bec5-2b191495a60f}</Project>
+      <Name>Technosoftware.UaServer.Controls.Source</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(BuildDir)\GenerateAssemblyInfo.targets" Condition="Exists('$(BuildDir)\GenerateAssemblyInfo.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>cscript ..\..\..\..\..\scripts\CopyKeyFile.vbs "$(ProjectDir)"  ..\..\..\</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

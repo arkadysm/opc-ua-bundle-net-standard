@@ -1,0 +1,15 @@
+<opc:TypeDictionary
+  xmlns:s1="http://technosoftware.com/WorkshopServerConsole/Engineering"
+  xmlns:s2="http://technosoftware.com/WorkshopServerConsole/Operations"
+  xmlns:opc="http://opcfoundation.org/BinarySchema/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/"
+  xmlns:tns="http://technosoftware.com/WorkshopServerConsole/Model"
+  DefaultByteOrder="LittleEndian"
+  TargetNamespace="http://technosoftware.com/WorkshopServerConsole/Model"
+>
+  <opc:Import Namespace="http://opcfoundation.org/UA/" Location="Opc.Ua.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://technosoftware.com/WorkshopServerConsole/Engineering" Location="Technosoftware.WorkshopServerConsole.Engineering.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://technosoftware.com/WorkshopServerConsole/Operations" Location="Technosoftware.WorkshopServerConsole.Operations.BinarySchema.bsd"/>
+
+</opc:TypeDictionary>
