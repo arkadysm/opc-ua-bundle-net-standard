@@ -5,10 +5,10 @@
 	xmlns:opc="http://opcfoundation.org/UA/ModelDesign.xsd" xsi:schemaLocation="http://opcfoundation.org/UA/ModelDesign.xsd ../../../../schema/UAModelDesign.xsd"
   xmlns:ua="http://opcfoundation.org/UA/"
   xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
-	xmlns:qve="http://technosoftware.com/WorkshopServerForms/Engineering"
-	xmlns:qvo="http://technosoftware.com/WorkshopServerForms/Operations"
-	xmlns="http://technosoftware.com/WorkshopServerForms/Model"
-  TargetNamespace="http://technosoftware.com/WorkshopServerForms/Model"
+	xmlns:qve="http://technosoftware.com/WorkshopServerConsole/Engineering"
+	xmlns:qvo="http://technosoftware.com/WorkshopServerConsole/Operations"
+	xmlns="http://technosoftware.com/WorkshopServerConsole/Model"
+  TargetNamespace="http://technosoftware.com/WorkshopServerConsole/Model"
 >
   <!-- 
   This element defines the mappings between the URIs used to identify namespaces and the symbols used in code.
@@ -17,9 +17,9 @@
   -->
   <opc:Namespaces>
     <opc:Namespace Name="OpcUa" Prefix="Opc.Ua" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd">http://opcfoundation.org/UA/</opc:Namespace>
-    <opc:Namespace Name="Engineering" Prefix="Technosoftware.WorkshopServerForms.Engineering" InternalPrefix="Technosoftware.WorkshopServerForms.Engineering">http://technosoftware.com/WorkshopServerForms/Engineering</opc:Namespace>
-    <opc:Namespace Name="Operations" Prefix="Technosoftware.WorkshopServerForms.Operations" InternalPrefix="Technosoftware.WorkshopServerForms.Operations">http://technosoftware.com/WorkshopServerForms/Operations</opc:Namespace>
-    <opc:Namespace Name="WorkshopServerForms" Prefix="Technosoftware.WorkshopServerForms.Model" InternalPrefix="Technosoftware.WorkshopServerForms.Model">http://technosoftware.com/WorkshopServerForms/Model</opc:Namespace>
+    <opc:Namespace Name="Engineering" Prefix="Technosoftware.WorkshopServerConsole.Engineering" InternalPrefix="Technosoftware.WorkshopServerConsole.Engineering">http://technosoftware.com/WorkshopServerConsole/Engineering</opc:Namespace>
+    <opc:Namespace Name="Operations" Prefix="Technosoftware.WorkshopServerConsole.Operations" InternalPrefix="Technosoftware.WorkshopServerConsole.Operations">http://technosoftware.com/WorkshopServerConsole/Operations</opc:Namespace>
+    <opc:Namespace Name="WorkshopServerConsole" Prefix="Technosoftware.WorkshopServerConsole.Model" InternalPrefix="Technosoftware.WorkshopServerConsole.Model">http://technosoftware.com/WorkshopServerConsole/Model</opc:Namespace>
   </opc:Namespaces>
 
   <!-- Create Types -->

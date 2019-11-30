@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "Opc.Ua.Core/1.2.1125.2019": {
+      "Opc.Ua.Core/1.2.1130.2019": {
         "dependencies": {
           "Microsoft.AspNetCore.Server.Kestrel": "2.0.1",
           "Microsoft.AspNetCore.Server.Kestrel.Https": "2.0.1",
@@ -1447,7 +1447,7 @@
     }
   },
   "libraries": {
-    "Opc.Ua.Core/1.2.1125.2019": {
+    "Opc.Ua.Core/1.2.1130.2019": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

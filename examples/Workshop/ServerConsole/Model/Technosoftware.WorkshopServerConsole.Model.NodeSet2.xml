@@ -5,7 +5,7 @@
   </NamespaceUris>
   <Models>
     <Model ModelUri="http://technosoftware.com/WorkshopServerConsole/Model">
-      <RequiredModel ModelUri="http://opcfoundation.org/UA/" Version="1.05" PublicationDate="2019-07-23T00:00:00Z" />
+      <RequiredModel ModelUri="http://opcfoundation.org/UA/" Version="1.05" PublicationDate="2019-05-01T00:00:00Z" />
     </Model>
   </Models>
   <Aliases>
@@ -80,7 +80,7 @@
       <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15162</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15166" BrowseName="1:IsProducing" ParentNodeId="ns=1;i=15162" DataType="Boolean">
+  <UAVariable NodeId="ns=1;i=15166" BrowseName="1:IsProducing" ParentNodeId="ns=1;i=15162" DataType="Boolean" AccessLevel="3">
     <DisplayName>IsProducing</DisplayName>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
@@ -88,7 +88,7 @@
       <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15162</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15167" BrowseName="1:MachineState" ParentNodeId="ns=1;i=15162" DataType="UInt32">
+  <UAVariable NodeId="ns=1;i=15167" BrowseName="1:MachineState" ParentNodeId="ns=1;i=15162" DataType="UInt32" AccessLevel="3">
     <DisplayName>MachineState</DisplayName>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
@@ -104,7 +104,7 @@
       <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
     </References>
   </UAObjectType>
-  <UAVariable NodeId="ns=1;i=15006" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15003" DataType="Double">
+  <UAVariable NodeId="ns=1;i=15006" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15003" DataType="Double" AccessLevel="3">
     <DisplayName>SetPoint</DisplayName>
     <References>
       <Reference ReferenceType="HasProperty">ns=1;i=15010</Reference>
@@ -203,7 +203,7 @@
       <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15098</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15100" BrowseName="1:IsProducing" ParentNodeId="ns=1;i=15098" DataType="Boolean">
+  <UAVariable NodeId="ns=1;i=15100" BrowseName="1:IsProducing" ParentNodeId="ns=1;i=15098" DataType="Boolean" AccessLevel="3">
     <DisplayName>IsProducing</DisplayName>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
@@ -211,7 +211,7 @@
       <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15098</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15101" BrowseName="1:MachineState" ParentNodeId="ns=1;i=15098" DataType="UInt32">
+  <UAVariable NodeId="ns=1;i=15101" BrowseName="1:MachineState" ParentNodeId="ns=1;i=15098" DataType="UInt32" AccessLevel="3">
     <DisplayName>MachineState</DisplayName>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
@@ -229,7 +229,7 @@
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15097</Reference>
     </References>
   </UAObject>
-  <UAVariable NodeId="ns=1;i=15066" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15065" DataType="Double">
+  <UAVariable NodeId="ns=1;i=15066" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15065" DataType="Double" AccessLevel="3">
     <DisplayName>SetPoint</DisplayName>
     <References>
       <Reference ReferenceType="HasProperty">ns=1;i=15070</Reference>
@@ -273,7 +273,7 @@
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15097</Reference>
     </References>
   </UAObject>
-  <UAVariable NodeId="ns=1;i=15079" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15078" DataType="Double">
+  <UAVariable NodeId="ns=1;i=15079" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15078" DataType="Double" AccessLevel="3">
     <DisplayName>SetPoint</DisplayName>
     <References>
       <Reference ReferenceType="HasProperty">ns=1;i=15083</Reference>
@@ -317,7 +317,7 @@
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15097</Reference>
     </References>
   </UAObject>
-  <UAVariable NodeId="ns=1;i=15092" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15091" DataType="Double">
+  <UAVariable NodeId="ns=1;i=15092" BrowseName="1:SetPoint" ParentNodeId="ns=1;i=15091" DataType="Double" AccessLevel="3">
     <DisplayName>SetPoint</DisplayName>
     <References>
       <Reference ReferenceType="HasProperty">ns=1;i=15096</Reference>

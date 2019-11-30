@@ -7,11 +7,11 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "Technosoftware.UaServer/1.2.1125.2019": {
+      "Technosoftware.UaServer/1.2.1130.2019": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
-          "Opc.Ua.Core": "1.2.1026.2019",
-          "Technosoftware.UaConfiguration": "1.2.1026.2019"
+          "Opc.Ua.Core": "1.2.1126.2019",
+          "Technosoftware.UaConfiguration": "1.2.1126.2019"
         },
         "runtime": {
           "Technosoftware.UaServer.dll": {}
@@ -1437,7 +1437,7 @@
           }
         }
       },
-      "Opc.Ua.Core/1.2.1026.2019": {
+      "Opc.Ua.Core/1.2.1126.2019": {
         "dependencies": {
           "Microsoft.AspNetCore.Server.Kestrel": "2.0.1",
           "Microsoft.AspNetCore.Server.Kestrel.Https": "2.0.1",
@@ -1453,9 +1453,9 @@
           "Opc.Ua.Core.dll": {}
         }
       },
-      "Technosoftware.UaConfiguration/1.2.1026.2019": {
+      "Technosoftware.UaConfiguration/1.2.1126.2019": {
         "dependencies": {
-          "Opc.Ua.Core": "1.2.1026.2019"
+          "Opc.Ua.Core": "1.2.1126.2019"
         },
         "runtime": {
           "Technosoftware.UaConfiguration.dll": {}
@@ -1464,7 +1464,7 @@
     }
   },
   "libraries": {
-    "Technosoftware.UaServer/1.2.1125.2019": {
+    "Technosoftware.UaServer/1.2.1130.2019": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2344,12 +2344,12 @@
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
-    "Opc.Ua.Core/1.2.1026.2019": {
+    "Opc.Ua.Core/1.2.1126.2019": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Technosoftware.UaConfiguration/1.2.1026.2019": {
+    "Technosoftware.UaConfiguration/1.2.1126.2019": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

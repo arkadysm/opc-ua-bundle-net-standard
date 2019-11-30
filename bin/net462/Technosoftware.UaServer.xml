@@ -2465,7 +2465,7 @@
             <summary>The date the license was issued.</summary>
         </member>
         <member name="P:Technosoftware.UaServer.IUaServer.ServiceExpired">
-            <summary>Indicates wether the service subscription or evaluation period is expired.</summary>
+            <summary>Indicates whether the service subscription or evaluation period is expired.</summary>
             <remarks>
                 <para>
                     <strong>Service Subscription:</strong>
@@ -2553,13 +2553,12 @@
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.LoadNodes(System.String,System.Object)">
             <summary>
-                Loads a node set from a resource and addes them to the set of predefined nodes.
+                Loads a node set from a resource and add them to the set of predefined nodes.
             </summary>
             <param name="resourceName">The name of the resource to be loaded</param>
             <param name="externalReferences">
                 <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
             </param>
-            <remark>Professional Edition Feature</remark>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.FindNode(Opc.Ua.NodeId)">
             <summary>
@@ -2588,238 +2587,440 @@
                 Recursively indexes the node and its children and adds it to the predefined nodes
             </summary>
             <param name="node">The node to be added.</param>
-            <remark>Profession Edition Feature</remark>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.DeleteNode(Opc.Ua.NodeId)">
             <summary>
                 Deletes a node and all of its children.
             </summary>
             <param name="nodeId">The node Id of the node to be removed.</param>
-            <remark>Profession Edition Feature</remark>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)">
-            <summary>Creates a new folder.</summary>
-            <param name="parent">The parent node object the new folder will be created in.</param>
-            <param name="path">
-                The full path of the new folder, e.g.
-                <font color="#A31515" size="2" face="Consolas">
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">/Static/Simple Types</font>
-                    </font>
-                </font>
-            </param>
-            <param name="name">
-                The name of the new folder, e.g. <font color="#A31515" size="2" face="Consolas">Simple Types</font>
+            <summary>
+              <para>Creates a new folder.</para>
+              <para>Folders are used to organise the AddressSpace into a hierarchy of Nodes. They represent the root Node of a subtree, and have no other semantics associated
+            with them.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new folder will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
             <returns>The created folder object which can be used in further calls to <see cref="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" />.</returns>
-            <example>
-                <para>
-                    <font color="blue" size="2" face="Consolas">
-                        <font color="blue" size="2" face="Consolas">
-                            <font color="blue" size="2" face="Consolas">object</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">root = _opcServer.CreateFolder(</font>
-                    </font>
-                    <font color="blue" size="2" face="Consolas">
-                        <font color="blue" size="2" face="Consolas">
-                            <font color="blue" size="2" face="Consolas">null</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"/DataAccess"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"DataAccess"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">);</font>
-                    </font>
-                </para>
-                <para>
-                    <font color="blue" size="2" face="Consolas">
-                        <font color="blue" size="2" face="Consolas">
-                            <font color="blue" size="2" face="Consolas">object</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">folder1 = _opcServer.CreateFolder(root,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"/Static"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"Static"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">);</font>
-                    </font>
-                </para>
-            </example>
+        </member>
+        <member name="M:Technosoftware.UaServer.IUaServer.CreateFolderState(Opc.Ua.NodeState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new folder.</para>
+              <para>Folders are used to organise the AddressSpace into a hierarchy of Nodes. They represent the root Node of a subtree, and have no other semantics associated
+            with them.</para>
+            </summary>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="parent">The parent NodeState object the new folder will be created in.</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.<br /></para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created folder object which can be used in further calls to <see cref="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" />.</returns>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseObject(Opc.Ua.NodeState,System.String,System.String)">
             <summary>
-                <para>Creates a new object.</para>
+              <para>Creates a new Object NodeClass.</para>
+              <para>Objects are used to represent systems, system components, real-world objects and software objects. Objects are defined using the BaseObjectState class.</para>
             </summary>
-            <param name="parent">The parent folder object the new object will be created in.</param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
+            <param name="parent">The parent NodeState object the new Object NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="name">
-                The name of the new object, e.g. <font color="#A31515" size="2" face="Consolas">Object1</font>
+            <returns>The created Object NodeClass.</returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseObjectState(Opc.Ua.NodeState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new Object NodeClass.</para>
+              <para>Objects are used to represent systems, system components, real-world objects and software objects. Objects are defined using the BaseObjectState class.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new Object Nodelass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <remarks>Not yet fully implemented.</remarks>
-            <returns>The created object.</returns>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.<br /></para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.<br /></para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created Object NodeClass.</returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseObjectType(Opc.Ua.NodeState,System.Object,System.String,System.String)">
+            <summary>
+              <para>Creates a new ObjectType NodeClass.</para>
+              <para>ObjectTypes provde definitions for Objects.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new ObjedctType NodeClass will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <returns>The created <see cref="T:Opc.Ua.BaseObjectTypeState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseObjectTypeState(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new ObjectType NodeClass.</para>
+              <para>ObjectTypes provde definitions for Objects.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new ObjectType NodeClass will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created <see cref="T:Opc.Ua.BaseObjectTypeState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateProperty(Opc.Ua.BaseObjectState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object)">
             <summary>
-                <para>Creates a new property.</para>
+              <para>Creates a new Property</para>
+              <para>Properties are used to define the characteristics of Nodes. Properties are defined using the Variable NodeClass. However, they restrict their use.</para>
+              <para>Properties are the leaf of any hierarchy; therefore they shall not be the SourceNode of any hierarchical References. This includes the HasComponent or
+            HasProperty Reference, that is, Properties do not contain Properties and cannot expose their complex structure. However, they may be the SourceNode of any
+            non-hierarchical References.</para>
+              <para>The HasTypeDefinition Reference points to the VariableType of the Property. Since Properties are uniquely identified by their BrowseName, all Properties
+            shall point to the PropertyType defined in OPC 10000-5.</para>
+              <para>Properties shall always be defined in the context of another Node and shall be the TargetNode of at least one HasProperty Reference. To distinguish them
+            from DataVariables, they shall not be the TargetNode of any HasComponent Reference. Thus, a HasProperty Reference pointing to a Variable Node defines this Node
+            as a Property.</para>
+              <para>The BrowseName of a Property is always unique in the context of a Node. It is not permitted for a Node to refer to two Variables using HasProperty
+            References having the same BrowseName.</para>
             </summary>
-            <param name="parent">The parent object the new property will be added to.</param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
+            <param name="parent">The parent NodeState object the new Property will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="name">
-                The name of the new method, e.g. <font color="#A31515" size="2" face="Consolas">Method1</font>
-            </param>
-            <remarks>Not yet fully implemented.</remarks>
             <param name="dataType">
-                The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
-                <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
+                The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
             </param>
             <param name="valueRank">
-                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
-                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
             </param>
             <param name="accessLevel">
-                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See
-                <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
+                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
             </param>
             <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
             <returns>The created property object.</returns>
         </member>
+        <member name="M:Technosoftware.UaServer.IUaServer.CreatePropertyState(Opc.Ua.BaseObjectState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new Property</para>
+              <para>Properties are used to define the characteristics of Nodes. Properties are defined using the Variable NodeClass. However, they restrict their use.</para>
+              <para>Properties are the leaf of any hierarchy; therefore they shall not be the SourceNode of any hierarchical References. This includes the HasComponent or
+            HasProperty Reference, that is, Properties do not contain Properties and cannot expose their complex structure. However, they may be the SourceNode of any
+            non-hierarchical References.</para>
+              <para>The HasTypeDefinition Reference points to the VariableType of the Property. Since Properties are uniquely identified by their BrowseName, all Properties
+            shall point to the PropertyType defined in OPC 10000-5.</para>
+              <para>Properties shall always be defined in the context of another Node and shall be the TargetNode of at least one HasProperty Reference. To distinguish them
+            from DataVariables, they shall not be the TargetNode of any HasComponent Reference. Thus, a HasProperty Reference pointing to a Variable Node defines this Node
+            as a Property.</para>
+              <para>The BrowseName of a Property is always unique in the context of a Node. It is not permitted for a Node to refer to two Variables using HasProperty
+            References having the same BrowseName.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new Property will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="dataType">
+                The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
+            </param>
+            <param name="valueRank">
+                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <param name="accessLevel">
+                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
+            </param>
+            <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created property object.</returns>
+        </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateView(Opc.Ua.NodeState,System.Object,System.String,System.String)">
-            <summary>Creates a new view.</summary>
+            <summary>
+              <para>Creates a new View NodeClass.</para>
+              <para>Underlying systems are often large, and Clients often have an interest in only a specific subset of the data. They do not need, or want, to be burdened with
+            viewing Nodes in the AddressSpace for which they have no interest.</para>
+              <para>To address this problem, this standard defines the concept of a View. Each View defines a subset of the Nodes in the AddressSpace. The entire AddressSpace
+            is the default View. Each Node in a View may contain only a subset of its References, as defined by the creator of the View. The View Node acts as the root for
+            the Nodes in the View. Views are defined using the View NodeClass.</para>
+              <para>All Nodes contained in a View shall be accessible starting from the View Node when browsing in the context of the View. It is not expected that all
+            containing Nodes can be browsed directly from the View Node but rather browsed from other Nodes contained in the View.</para>
+              <para>A View Node may not only be used as additional entry point into the AddressSpace but as a construct to organize the AddressSpace and thus as the only entry
+            point into a subset of the AddressSpace. Therefore, Clients shall not ignore View Nodes when exposing the AddressSpace. Simple Clients that do not deal with
+            Views for filtering purposes can, for example, handle a View Node like an Object of type FolderType.<br /></para>
+            </summary>
+            <param name="parent">The parent NodeState object the new View NodeClass will be created in.</param>
             <param name="externalReferences">
-                <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
             </param>
-            <param name="parent">The folder object returned by a call to <see cref="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new view will be added to.</param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="name">The name of the new view, e.g. <font color="#A31515" size="2" face="Consolas">View1</font></param>
-            <remarks>Professional Edition feature.</remarks>
             <returns>The created <see cref="T:Opc.Ua.ViewState" /></returns>
         </member>
-        <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseObjectType(Opc.Ua.NodeState,System.Object,System.String,System.String)">
+        <member name="M:Technosoftware.UaServer.IUaServer.CreateViewState(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
             <summary>
-                <para>Creates a new object type.</para>
+              <para>Creates a new View NodeClass.</para>
+              <para>Underlying systems are often large, and Clients often have an interest in only a specific subset of the data. They do not need, or want, to be burdened with
+            viewing Nodes in the AddressSpace for which they have no interest.</para>
+              <para>To address this problem, this standard defines the concept of a View. Each View defines a subset of the Nodes in the AddressSpace. The entire AddressSpace
+            is the default View. Each Node in a View may contain only a subset of its References, as defined by the creator of the View. The View Node acts as the root for
+            the Nodes in the View. Views are defined using the View NodeClass.</para>
+              <para>All Nodes contained in a View shall be accessible starting from the View Node when browsing in the context of the View. It is not expected that all
+            containing Nodes can be browsed directly from the View Node but rather browsed from other Nodes contained in the View.</para>
+              <para>A View Node may not only be used as additional entry point into the AddressSpace but as a construct to organize the AddressSpace and thus as the only entry
+            point into a subset of the AddressSpace. Therefore, Clients shall not ignore View Nodes when exposing the AddressSpace. Simple Clients that do not deal with
+            Views for filtering purposes can, for example, handle a View Node like an Object of type FolderType.<br /></para>
             </summary>
+            <param name="parent">The parent NodeState object the new View NodeClass will be created in.</param>
             <param name="externalReferences">
-                <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
             </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="parent">The parent folder object the new object type will be created in.</param>
-            <param name="name">
-                The name of the new object type, e.g.
-                <font color="#A31515" size="2" face="Consolas">ObjectType1</font>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
             </param>
-            <returns>The created <see cref="T:Opc.Ua.BaseObjectTypeState" /></returns>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created <see cref="T:Opc.Ua.ViewState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseVariableType(Opc.Ua.NodeState,System.Object,System.String,System.String,Opc.Ua.BuiltInType,System.Int32)">
             <summary>
                 <para>Creates a new variable type.</para>
             </summary>
+            <param name="parent">The parent NodeState object the new variable type will be created in.</param>
             <param name="externalReferences">
-                <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
             </param>
-            <param name="parent">The parent folder object the new variable type will be created in.</param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <param name="name">
-                The name of the new variable, e.g.
-                <font color="#A31515" size="2" face="Consolas">VariableType1</font>
-            </param>
-            <param name="valueRank">
-                The value rank of the new variable type, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
-                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
             <param name="dataType">
                 The data type of the new variable type, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
                 <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
             </param>
+            <param name="valueRank">
+                The value rank of the new variable type, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
+                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <returns>The created <see cref="T:Opc.Ua.BaseVariableTypeState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseVariableTypeState(Opc.Ua.NodeState,System.Object,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.BuiltInType,System.Int32,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+                <para>Creates a new variable type.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new variable type will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="dataType">
+                The data type of the new variable type, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
+                <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
+            </param>
+            <param name="valueRank">
+                The value rank of the new variable type, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
+                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
             <returns>The created <see cref="T:Opc.Ua.BaseVariableTypeState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateReferenceType(Opc.Ua.NodeState,System.Object,System.String,System.String)">
             <summary>
                 <para>Creates a new reference type.</para>
             </summary>
-            <param name="parent">The parent folder object the new reference type will be created in.</param>
+            <param name="parent">The parent NodeState object the new reference type will be created in.</param>
             <param name="externalReferences">
-                <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
             </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <param name="name">
-                The name of the new reference tyoe, e.g.
-                <font color="#A31515" size="2" face="Consolas">ReferenceType1</font>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
             <returns>The created <see cref="T:Opc.Ua.ReferenceTypeState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateDataType(Opc.Ua.NodeState,System.Object,System.String,System.String)">
             <summary>Creates a new data type.</summary>
-            <param name="parent">
-                The folder object returned by a call to <see cref="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new data type will be
-                added to.
-            </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <param name="name">
-                The name of the new data type, e.g. <font color="#A31515" size="2" face="Consolas">DataType1</font>
-            </param>
+            <param name="parent">The parent NodeState object the new data type will be created in.</param>
             <param name="externalReferences">
-                <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
             <returns>The created data type object</returns>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object)">
-            <summary>Creates a new variable.</summary>
-            <param name="parent">
-                The folder object returned by a call to <see cref="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new variable will be added
-                to.
-            </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <remarks>
-                <b>Important:</b> Keep in mind that the actual ID's of nodes should be unique such that no two
-                nodes within an address-space share the same ID's.
-            </remarks>
-            <param name="name">
-                The name of the new variable, e.g. <font color="#A31515" size="2" face="Consolas">SByte</font>
+            <summary>Creates a new DataVariable NodeClass.</summary>
+            <param name="parent">The parent NodeState object the new DataVariable NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
             <param name="dataType">
                 The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
@@ -2835,51 +3036,18 @@
             </param>
             <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
             <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
-            <example>
-                <para>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">_opcServer.CreateBaseDataVariable(folder3, nodeId++,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">
-                                "/Static/All
-                                Profiles/Scalar/Double"
-                            </font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"Double"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">, BuiltInType.Double, ValueRanks.Scalar, AccessLevels.CurrentReadOrWrite);</font>
-                    </font>
-                </para>
-                <code title="" description="" lang="neutral"></code>
-            </example>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.NodeId,System.Int32,System.Byte,System.Object)">
-            <summary>Creates a new variable.</summary>
-            <param name="parent">
-                The folder object returned by a call to <see cref="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new variable will be added
-                to.
+            <summary>Creates a new DataVariable NodeClass.</summary>
+            <param name="parent">The parent NodeState object the new DataVariable NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <remarks>
-                <b>Important:</b> Keep in mind that the actual ID's of nodes should be unique such that no two
-                nodes within an address-space share the same ID's.
-            </remarks>
-            <param name="name">
-                The name of the new variable, e.g. <font color="#A31515" size="2" face="Consolas">SByte</font>
-            </param>
-            <param name="nodeId">
+            <param name="dataType">
                 The Node Id of the node used as data type of the new variable.
             </param>
             <param name="valueRank">
@@ -2894,22 +3062,16 @@
             <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.ExpandedNodeId,System.Int32,System.Byte,System.Object)">
-            <summary>Creates a new variable.</summary>
-            <param name="parent">
-                The folder object returned by a call to <see cref="M:Technosoftware.UaServer.IUaServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new variable will be added
-                to.
+            <summary>Creates a new DataVariable NodeClass.</summary>
+            <param name="parent">The parent NodeState object the new DataVariable NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <remarks>
-                <b>Important:</b> Keep in mind that the actual ID's of nodes should be unique such that no two
-                nodes within an address-space share the same ID's.
-            </remarks>
-            <param name="name">
-                The name of the new variable, e.g. <font color="#A31515" size="2" face="Consolas">SByte</font>
-            </param>
-            <param name="expandedNodeId">
+            <param name="dataType">
                 The Expanded Node Id of the node used as data type of the new variable.
             </param>
             <param name="valueRank">
@@ -3201,7 +3363,6 @@
                 <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
             </param>
             <returns>The created argument</returns>
-            <remarks>Professional Edition feature.</remarks>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.CreateMethod(Opc.Ua.BaseObjectState,System.String,System.String,Opc.Ua.MethodCallEventHandler)">
             <summary>
@@ -3220,7 +3381,6 @@
             </param>
             <param name="callingMethod">The method which will be called if the method is executed.</param>
             <returns>The created method object.</returns>
-            <remarks>Professional Edition feature.</remarks>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.AddInputArguments(Opc.Ua.MethodState,System.Object,Opc.Ua.Argument[])">
             <summary>Adds the input arguments to a method.</summary>
@@ -3244,7 +3404,6 @@
             </param>
             <param name="inputArguments">The input arguments.</param>
             <returns>A <see cref="T:Opc.Ua.StatusCode" /> code with the result of the operation.</returns>
-            <remarks>Professional Edition feature.</remarks>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.AddOutputArguments(Opc.Ua.MethodState,System.Object,Opc.Ua.Argument[])">
             <summary>Adds the output arguments to a method.</summary>
@@ -3268,7 +3427,6 @@
             </param>
             <param name="outputArguments">The output arguments.</param>
             <returns>A <see cref="T:Opc.Ua.StatusCode" /> code with the result of the operation.</returns>
-            <remarks>Professional Edition feature.</remarks>
         </member>
         <member name="M:Technosoftware.UaServer.IUaServer.AddRootNotifier(Opc.Ua.NodeState)">
             <summary>
@@ -7865,19 +8023,39 @@
                 A list of references
             </summary>
         </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateFolder(Opc.Ua.NodeState,System.String,System.String)">
-            <summary>
-                Creates a new folder.
-            </summary>
-        </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateObject(Opc.Ua.NodeState,System.String,System.String)">
+        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateBaseObjectState(Opc.Ua.NodeState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
             <summary>
                 Creates a new object.
             </summary>
         </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateObjectType(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,System.String)">
+        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateBaseObjectTypeState(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
             <summary>
                 Creates a new object type.
+            </summary>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreatePropertyState(Opc.Ua.BaseObjectState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+                Creates a new property.
+            </summary>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateViewState(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+                Creates a new view.
+            </summary>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateBaseVariableTypeState(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.BuiltInType,System.Int32,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+                Creates a new variable type.
+            </summary>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateBaseDataVariableState(Opc.Ua.NodeState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+                Creates a new variable.
+            </summary>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateBaseDataVariableState(Opc.Ua.NodeState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.NodeId,System.Int32,System.Byte,System.Object,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+                Creates a new variable.
             </summary>
         </member>
         <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateMeshVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.NodeState[])">
@@ -7910,21 +8088,6 @@
             Creates a new variable.
             </summary>
         </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object)">
-            <summary>
-                Creates a new variable.
-            </summary>
-        </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.NodeId,System.Int32,System.Byte,System.Object)">
-            <summary>
-                Creates a new variable.
-            </summary>
-        </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateVariableType(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,System.String,Opc.Ua.BuiltInType,System.Int32)">
-            <summary>
-                Creates a new variable type.
-            </summary>
-        </member>
         <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateDataType(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,System.String)">
             <summary>
                 Creates a new data type.
@@ -7935,19 +8098,9 @@
                 Creates a new reference type.
             </summary>
         </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateView(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,System.String)">
-            <summary>
-                Creates a new view.
-            </summary>
-        </member>
         <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateMethod(Opc.Ua.BaseObjectState,System.String,System.String)">
             <summary>
                 Creates a new method.
-            </summary>
-        </member>
-        <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateProperty(Opc.Ua.BaseObjectState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object)">
-            <summary>
-                Creates a new property.
             </summary>
         </member>
         <member name="M:Technosoftware.UaServer.UaBaseNodeManager.CreateArgument(System.String,System.String,Opc.Ua.BuiltInType,System.Int32)">
@@ -8226,109 +8379,433 @@
             </summary>
         </member>
         <member name="M:Technosoftware.UaServer.UaBaseServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)">
-            <summary>Creates a new folder.</summary>
-            <param name="parent">The parent folder object the new folder will be created in.</param>
-            <param name="path">
-                The full path of the new folder, e.g.
-                <font color="#A31515" size="2" face="Consolas">
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">/Static/Simple Types</font>
-                    </font>
-                </font>
-            </param>
-            <param name="name">
-                The name of the new folder, e.g. <font color="#A31515" size="2" face="Consolas">Simple Types</font>
+            <summary>
+              <para>Creates a new folder.</para>
+              <para>Folders are used to organise the AddressSpace into a hierarchy of Nodes. They represent the root Node of a subtree, and have no other semantics associated
+            with them.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new folder will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
             <returns>The created folder object which can be used in further calls to <see cref="M:Technosoftware.UaServer.UaBaseServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" />.</returns>
-            <example>
-                <para>
-                    <font color="blue" size="2" face="Consolas">
-                        <font color="blue" size="2" face="Consolas">
-                            <font color="blue" size="2" face="Consolas">object</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">root = _opcServer.CreateFolder(</font>
-                    </font>
-                    <font color="blue" size="2" face="Consolas">
-                        <font color="blue" size="2" face="Consolas">
-                            <font color="blue" size="2" face="Consolas">null</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"/DataAccess"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"DataAccess"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">);</font>
-                    </font>
-                </para>
-                <para>
-                    <font color="blue" size="2" face="Consolas">
-                        <font color="blue" size="2" face="Consolas">
-                            <font color="blue" size="2" face="Consolas">object</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">folder1 = _opcServer.CreateFolder(root,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"/Static"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"Static"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">);</font>
-                    </font>
-                </para>
-            </example>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateFolderState(Opc.Ua.NodeState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new folder.</para>
+              <para>Folders are used to organise the AddressSpace into a hierarchy of Nodes. They represent the root Node of a subtree, and have no other semantics associated
+            with them.</para>
+            </summary>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="parent">The parent NodeState object the new folder will be created in.</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.<br /></para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created folder object which can be used in further calls to <see cref="M:Technosoftware.UaServer.UaBaseServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" />.</returns>
         </member>
         <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseObject(Opc.Ua.NodeState,System.String,System.String)">
             <summary>
-                <para>Creates a new object.</para>
+              <para>Creates a new Object NodeClass.</para>
+              <para>Objects are used to represent systems, system components, real-world objects and software objects. Objects are defined using the BaseObjectState class.</para>
             </summary>
-            <param name="parent">The parent folder object the new object will be created in.</param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
+            <param name="parent">The parent NodeState object the new Object NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="name">
-                The name of the new object, e.g. <font color="#A31515" size="2" face="Consolas">Object1</font>
+            <returns>The created Object NodeClass.</returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseObjectState(Opc.Ua.NodeState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new Object NodeClass.</para>
+              <para>Objects are used to represent systems, system components, real-world objects and software objects. Objects are defined using the BaseObjectState class.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new Object NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <remarks>Not yet fully implemented.</remarks>
-            <returns>The created object.</returns>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.<br /></para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.<br /></para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created Object NodeClass.</returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseObjectType(Opc.Ua.NodeState,System.Object,System.String,System.String)">
+            <summary>
+              <para>Creates a new ObjectType NodeClass.</para>
+              <para>ObjectTypes provde definitions for Objects.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new ObjectType NodeClass will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <returns>The created <see cref="T:Opc.Ua.BaseObjectTypeState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseObjectTypeState(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new ObjectType NodeClass.</para>
+              <para>ObjectTypes provde definitions for Objects.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new ObjectType NodeClass will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created <see cref="T:Opc.Ua.BaseObjectTypeState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.UaBaseServer.CreateProperty(Opc.Ua.BaseObjectState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object)">
             <summary>
-                <para>Creates a new property.</para>
+              <para>Creates a new Property</para>
+              <para>Properties are used to define the characteristics of Nodes. Properties are defined using the Variable NodeClass. However, they restrict their use.</para>
+              <para>Properties are the leaf of any hierarchy; therefore they shall not be the SourceNode of any hierarchical References. This includes the HasComponent or
+            HasProperty Reference, that is, Properties do not contain Properties and cannot expose their complex structure. However, they may be the SourceNode of any
+            non-hierarchical References.</para>
+              <para>The HasTypeDefinition Reference points to the VariableType of the Property. Since Properties are uniquely identified by their BrowseName, all Properties
+            shall point to the PropertyType defined in OPC 10000-5.</para>
+              <para>Properties shall always be defined in the context of another Node and shall be the TargetNode of at least one HasProperty Reference. To distinguish them
+            from DataVariables, they shall not be the TargetNode of any HasComponent Reference. Thus, a HasProperty Reference pointing to a Variable Node defines this Node
+            as a Property.</para>
+              <para>The BrowseName of a Property is always unique in the context of a Node. It is not permitted for a Node to refer to two Variables using HasProperty
+            References having the same BrowseName.</para>
             </summary>
-            <param name="parent">The parent object the new property will be added to.</param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
+            <param name="parent">The parent NodeState object the new Property will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
             </param>
-            <param name="name">
-                The name of the new method, e.g. <font color="#A31515" size="2" face="Consolas">Method1</font>
+            <param name="dataType">
+                The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
             </param>
-            <remarks>Not yet fully implemented.</remarks>
+            <param name="valueRank">
+                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <param name="accessLevel">
+                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
+            </param>
+            <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
+            <returns>The created property object.</returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreatePropertyState(Opc.Ua.BaseObjectState,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new Property</para>
+              <para>Properties are used to define the characteristics of Nodes. Properties are defined using the Variable NodeClass. However, they restrict their use.</para>
+              <para>Properties are the leaf of any hierarchy; therefore they shall not be the SourceNode of any hierarchical References. This includes the HasComponent or
+            HasProperty Reference, that is, Properties do not contain Properties and cannot expose their complex structure. However, they may be the SourceNode of any
+            non-hierarchical References.</para>
+              <para>The HasTypeDefinition Reference points to the VariableType of the Property. Since Properties are uniquely identified by their BrowseName, all Properties
+            shall point to the PropertyType defined in OPC 10000-5.</para>
+              <para>Properties shall always be defined in the context of another Node and shall be the TargetNode of at least one HasProperty Reference. To distinguish them
+            from DataVariables, they shall not be the TargetNode of any HasComponent Reference. Thus, a HasProperty Reference pointing to a Variable Node defines this Node
+            as a Property.</para>
+              <para>The BrowseName of a Property is always unique in the context of a Node. It is not permitted for a Node to refer to two Variables using HasProperty
+            References having the same BrowseName.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new Property will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="dataType">
+                The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
+            </param>
+            <param name="valueRank">
+                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <param name="accessLevel">
+                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
+            </param>
+            <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created property object.</returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateView(Opc.Ua.NodeState,System.Object,System.String,System.String)">
+            <summary>
+              <para>Creates a new View NodeClass.</para>
+              <para>Underlying systems are often large, and Clients often have an interest in only a specific subset of the data. They do not need, or want, to be burdened with
+            viewing Nodes in the AddressSpace for which they have no interest.</para>
+              <para>To address this problem, this standard defines the concept of a View. Each View defines a subset of the Nodes in the AddressSpace. The entire AddressSpace
+            is the default View. Each Node in a View may contain only a subset of its References, as defined by the creator of the View. The View Node acts as the root for
+            the Nodes in the View. Views are defined using the View NodeClass.</para>
+              <para>All Nodes contained in a View shall be accessible starting from the View Node when browsing in the context of the View. It is not expected that all
+            containing Nodes can be browsed directly from the View Node but rather browsed from other Nodes contained in the View.</para>
+              <para>A View Node may not only be used as additional entry point into the AddressSpace but as a construct to organize the AddressSpace and thus as the only entry
+            point into a subset of the AddressSpace. Therefore, Clients shall not ignore View Nodes when exposing the AddressSpace. Simple Clients that do not deal with
+            Views for filtering purposes can, for example, handle a View Node like an Object of type FolderType.<br /></para>
+            </summary>
+            <param name="parent">The parent NodeState object the new View NodeClass will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <returns>The created <see cref="T:Opc.Ua.ViewState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateViewState(Opc.Ua.NodeState,System.Collections.Generic.IDictionary{Opc.Ua.NodeId,System.Collections.Generic.IList{Opc.Ua.IReference}},System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+              <para>Creates a new View NodeClass.</para>
+              <para>Underlying systems are often large, and Clients often have an interest in only a specific subset of the data. They do not need, or want, to be burdened with
+            viewing Nodes in the AddressSpace for which they have no interest.</para>
+              <para>To address this problem, this standard defines the concept of a View. Each View defines a subset of the Nodes in the AddressSpace. The entire AddressSpace
+            is the default View. Each Node in a View may contain only a subset of its References, as defined by the creator of the View. The View Node acts as the root for
+            the Nodes in the View. Views are defined using the View NodeClass.</para>
+              <para>All Nodes contained in a View shall be accessible starting from the View Node when browsing in the context of the View. It is not expected that all
+            containing Nodes can be browsed directly from the View Node but rather browsed from other Nodes contained in the View.</para>
+              <para>A View Node may not only be used as additional entry point into the AddressSpace but as a construct to organize the AddressSpace and thus as the only entry
+            point into a subset of the AddressSpace. Therefore, Clients shall not ignore View Nodes when exposing the AddressSpace. Simple Clients that do not deal with
+            Views for filtering purposes can, for example, handle a View Node like an Object of type FolderType.<br /></para>
+            </summary>
+            <param name="parent">The parent NodeState object the new View NodeClass will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created <see cref="T:Opc.Ua.ViewState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseVariableType(Opc.Ua.NodeState,System.Object,System.String,System.String,Opc.Ua.BuiltInType,System.Int32)">
+            <summary>
+                <para>Creates a new variable type.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new variable type will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="dataType">
+                The data type of the new variable type, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
+                <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
+            </param>
+            <param name="valueRank">
+                The value rank of the new variable type, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
+                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <returns>The created <see cref="T:Opc.Ua.BaseVariableTypeState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseVariableTypeState(Opc.Ua.NodeState,System.Object,System.String,Opc.Ua.LocalizedText,Opc.Ua.LocalizedText,Opc.Ua.BuiltInType,System.Int32,Opc.Ua.AttributeWriteMask,Opc.Ua.AttributeWriteMask,Opc.Ua.RolePermissionTypeCollection,Opc.Ua.RolePermissionTypeCollection)">
+            <summary>
+                <para>Creates a new variable type.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new variable type will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="description">The optional Description Attribute shall explain the meaning of the Node in a localised text using the same mechanisms for localisation as described for the
+            DisplayName.</param>
+            <param name="dataType">
+                The data type of the new variable type, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
+                <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
+            </param>
+            <param name="valueRank">
+                The value rank of the new variable type, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
+                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <param name="writeMask">
+              <para>The optional WriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node. The WriteMask Attribute does not take any user
+            access rights into account, that is, although an Attribute is writable this may be restricted to a certain user/user group.</para>
+              <para>If the OPC UA Server does not have the ability to get the WriteMask information for a specific Attribute from the underlying system, it should state that it
+            is writable. If a write operation is called on the Attribute, the Server should transfer this request and return the corresponding StatusCode if such a request
+            is rejected. StatusCodes are defined in OPC 10000-4.</para>
+            </param>
+            <param name="userWriteMask">
+              <para>The optional UserWriteMask Attribute exposes the possibilities of a client to write the Attributes of the Node taking user access rights into account. It
+            uses the AttributeWriteMask DataType which is defined in 0.</para>
+              <para>The UserWriteMask Attribute can only further restrict the WriteMask Attribute, when it is set to not writable in the general case that applies for every
+            user.</para>
+              <para>Clients cannot assume an Attribute can be written based on the UserWriteMask Attribute.It is possible that the Server may return an access denied error due
+            to some server specific change which was not reflected in the state of this Attribute at the time the Client accessed it.</para>
+            </param>
+            <param name="rolePermissions">The optional RolePermissions Attribute specifies the Permissions that apply to a Node for all Roles which have access to the Node.</param>
+            <param name="userRolePermissions">The optional UserRolePermissions Attribute specifies the Permissions that apply to a Node for all Roles granted to current Session.</param>
+            <returns>The created <see cref="T:Opc.Ua.BaseVariableTypeState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateReferenceType(Opc.Ua.NodeState,System.Object,System.String,System.String)">
+            <summary>
+                <para>Creates a new reference type.</para>
+            </summary>
+            <param name="parent">The parent NodeState object the new reference type will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <returns>The created <see cref="T:Opc.Ua.ReferenceTypeState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateDataType(Opc.Ua.NodeState,System.Object,System.String,System.String)">
+            <summary>Creates a new data type.</summary>
+            <param name="parent">The parent NodeState object the new data type will be created in.</param>
+            <param name="externalReferences">
+              <para>The externalReferences is an out parameter that allows the generic server to link to nodes.</para>
+            </param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <returns>The created data type object</returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object)">
+            <summary>Creates a new DataVariable NodeClass.</summary>
+            <param name="parent">The parent NodeState object the new DataVariable NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
             <param name="dataType">
                 The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
                 <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
@@ -8342,7 +8819,55 @@
                 <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
             </param>
             <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
-            <returns>The created property object.</returns>
+            <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.NodeId,System.Int32,System.Byte,System.Object)">
+            <summary>Creates a new DataVariable NodeClass.</summary>
+            <param name="parent">The parent NodeState object the new DataVariable NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="dataType">
+                The Node Id of the node used as data type of the new variable.
+            </param>
+            <param name="valueRank">
+                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
+                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <param name="accessLevel">
+                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See
+                <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
+            </param>
+            <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
+            <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
+        </member>
+        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.ExpandedNodeId,System.Int32,System.Byte,System.Object)">
+            <summary>Creates a new DataVariable NodeClass.</summary>
+            <param name="parent">The parent NodeState object the new DataVariable NodeClass will be created in.</param>
+            <param name="browseName">Nodes have a BrowseName Attribute that is used as a non-localised human-readable name when browsing the AddressSpace to create paths out of BrowseNames. The
+            TranslateBrowsePathsToNodeIds Service defined in OPC 10000-4 can be used to follow a path constructed of BrowseNames, e.g. /Static/Simple Types</param>
+            <param name="displayName">
+              <para>The DisplayName Attribute contains the localised name of the Node, e.g. Simple Types. Clients should use this Attribute if they want to display the name of
+            the Node to the user. They should not use the BrowseName for this purpose.</para>
+              <para>The string part of the DisplayName is restricted to 512 characters.</para>
+            </param>
+            <param name="dataType">
+                The Expanded Node Id of the node used as data type of the new variable.
+            </param>
+            <param name="valueRank">
+                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
+                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
+            </param>
+            <param name="accessLevel">
+                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See
+                <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
+            </param>
+            <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
+            <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.UaBaseServer.CreateArgument(System.String,System.String,Opc.Ua.BuiltInType,System.Int32)">
             <summary>Creates a new argument.</summary>
@@ -8431,119 +8956,6 @@
             <param name="outputArguments">The output arguments.</param>
             <returns>A <see cref="T:Opc.Ua.StatusCode" /> code with the result of the operation.</returns>
             <remarks>Professional Edition feature.</remarks>
-        </member>
-        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object)">
-            <summary>Creates a new variable.</summary>
-            <param name="parent">
-                The folder object returned by a call to <see cref="M:Technosoftware.UaServer.UaBaseServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new variable will be added
-                to.
-            </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <param name="name">
-                The name of the new variable, e.g. <font color="#A31515" size="2" face="Consolas">SByte</font>
-            </param>
-            <param name="dataType">
-                The data type of the new variable, e.g. <see cref="F:Opc.Ua.BuiltInType.SByte" />. See
-                <see cref="T:Opc.Ua.BuiltInType" /> for all possible types
-            </param>
-            <param name="valueRank">
-                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
-                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
-            </param>
-            <param name="accessLevel">
-                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See
-                <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
-            </param>
-            <param name="initialValue"></param>
-            <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
-            <example>
-                <para>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">_opcServer.CreateBaseDataVariable(folder3, nodeId++,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">
-                                "/Static/All
-                                Profiles/Scalar/Double"
-                            </font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">,</font>
-                    </font>
-                    <font color="#A31515" size="2" face="Consolas">
-                        <font color="#A31515" size="2" face="Consolas">
-                            <font color="#A31515" size="2" face="Consolas">"Double"</font>
-                        </font>
-                    </font>
-                    <font size="2" face="Consolas">
-                        <font size="2" face="Consolas">, BuiltInType.Double, ValueRanks.Scalar, AccessLevels.CurrentReadOrWrite);</font>
-                    </font>
-                </para>
-            </example>
-        </member>
-        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.NodeId,System.Int32,System.Byte,System.Object)">
-            <summary>Creates a new variable.</summary>
-            <param name="parent">
-                The folder object returned by a call to <see cref="M:Technosoftware.UaServer.UaBaseServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new variable will be added
-                to.
-            </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <remarks>
-                <b>Important:</b> Keep in mind that the actual ID's of nodes should be unique such that no two
-                nodes within an address-space share the same ID's.
-            </remarks>
-            <param name="name">
-                The name of the new variable, e.g. <font color="#A31515" size="2" face="Consolas">SByte</font>
-            </param>
-            <param name="nodeId">
-                The Node Id of the node used as data type of the new variable.
-            </param>
-            <param name="valueRank">
-                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
-                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
-            </param>
-            <param name="accessLevel">
-                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See
-                <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
-            </param>
-            <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
-            <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
-        </member>
-        <member name="M:Technosoftware.UaServer.UaBaseServer.CreateBaseDataVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.ExpandedNodeId,System.Int32,System.Byte,System.Object)">
-            <summary>Creates a new variable.</summary>
-            <param name="parent">
-                The folder object returned by a call to <see cref="M:Technosoftware.UaServer.UaBaseServer.CreateFolder(Opc.Ua.NodeState,System.String,System.String)" /> the new variable will be added
-                to.
-            </param>
-            <param name="path">
-                The unique path name for the variable in the server's address space.
-            </param>
-            <remarks>
-                <b>Important:</b> Keep in mind that the actual ID's of nodes should be unique such that no two
-                nodes within an address-space share the same ID's.
-            </remarks>
-            <param name="name">
-                The name of the new variable, e.g. <font color="#A31515" size="2" face="Consolas">SByte</font>
-            </param>
-            <param name="expandedNodeId">
-                The Expanded Node Id of the node used as data type of the new variable.
-            </param>
-            <param name="valueRank">
-                The value rank of the new variable, e.g. <see cref="F:Opc.Ua.ValueRanks.Scalar" />. See
-                <see cref="T:Opc.Ua.ValueRanks" /> for all possible value ranks.
-            </param>
-            <param name="accessLevel">
-                The access level of the new variable, e.g. <see cref="F:Opc.Ua.AccessLevels.CurrentRead" />. See
-                <see cref="T:Opc.Ua.AccessLevels" /> for all possible access levels.
-            </param>
-            <param name="initialValue">The initial value. If null a default value is used as initial value.</param>
-            <returns>The created <see cref="T:Opc.Ua.BaseDataVariableState" /></returns>
         </member>
         <member name="M:Technosoftware.UaServer.UaBaseServer.CreateMeshVariable(Opc.Ua.NodeState,System.String,System.String,Opc.Ua.BuiltInType,System.Int32,System.Byte,System.Object,Opc.Ua.NodeState[])">
             <summary>Creates a new meshed variable.</summary>

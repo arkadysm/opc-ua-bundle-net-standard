@@ -235,7 +235,7 @@ namespace Technosoftware.WorkshopServerForms
 
                 LoadPredefinedNodes(SystemContext, externalReferences);
 
-                FolderState root = opcServer_.CreateFolder(null, "My Data", "My Data");
+                FolderState root = opcServer_.CreateFolderState(null, "My Data", new LocalizedText("en", "My Data"), new LocalizedText("en", "Root folder of Workshop Server"));
                 References.Add(new NodeStateReference(ReferenceTypes.Organizes, false, root.NodeId));
                 root.EventNotifier = EventNotifiers.SubscribeToEvents;
                 opcServer_.AddRootNotifier(root);
@@ -328,7 +328,7 @@ namespace Technosoftware.WorkshopServerForms
                     methodsInstructions.Value = "Contains methods with varying parameter definitions.";
 
                     #region Hello Method
-                    MethodState helloMethod = CreateMethod(methodsFolder, methods + "Hello", "Hello");
+                    MethodState helloMethod = opcServer_.CreateMethod(methodsFolder, methods + "Hello", "Hello");
                     // set input arguments
                     helloMethod.InputArguments = new PropertyState<Argument[]>(helloMethod);
                     helloMethod.InputArguments.NodeId = new NodeId(helloMethod.BrowseName.Name + "InArgs", NamespaceIndex);
@@ -646,7 +646,6 @@ namespace Technosoftware.WorkshopServerForms
             IList<object> inputArguments,
             IList<object> outputArguments)
         {
-
             // all arguments must be provided.
             if (inputArguments.Count < 1)
             {
@@ -724,31 +723,6 @@ namespace Technosoftware.WorkshopServerForms
                 itemsCreated.Add(CreateDynamicVariable(newParentFolder, newPath, newName, dataType, valueRank));
             }//for i
             return (itemsCreated.ToArray());
-        }
-
-        /// <summary>
-        /// Creates a new method.
-        /// </summary>
-        private MethodState CreateMethod(NodeState parent, string path, string name)
-        {
-            MethodState method = new MethodState(parent);
-
-            method.SymbolicName = name;
-            method.ReferenceTypeId = ReferenceTypeIds.HasComponent;
-            method.NodeId = new NodeId(path, NamespaceIndex);
-            method.BrowseName = new QualifiedName(path, NamespaceIndex);
-            method.DisplayName = new LocalizedText("en", name);
-            method.WriteMask = AttributeWriteMask.None;
-            method.UserWriteMask = AttributeWriteMask.None;
-            method.Executable = true;
-            method.UserExecutable = true;
-
-            if (parent != null)
-            {
-                parent.AddChild(method);
-            }
-
-            return method;
         }
 
         private object GetNewValue(BaseVariableState variable)

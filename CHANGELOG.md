@@ -1,4 +1,21 @@
 -------------------------------------------------------------------------------------------------------------
+## OPC UA Client SDK .NET Standard - 1.2.1130 (Release Date 30-NOV-2019)
+
+###	Enhancement
+- Description and RolePermissions are now initialized
+
+## OPC UA Server SDK .NET Standard - 1.2.1130 (Release Date 30-NOV-2019)
+
+###	Enhancement
+- Description and RolePermissions are now initialized
+
+## OPC UA Core .NET Standard - 1.2.1130 (Release Date 30-NOV-2019)
+
+###	Enhancement
+- Description and RolePermissions are now initialized
+- Description for OPC UA standard nodes are now loaded also.
+
+-------------------------------------------------------------------------------------------------------------
 ## OPC UA Client SDK .NET Standard - 1.2.1125 (Release Date 25-NOV-2019)
 
 ###	Enhancement

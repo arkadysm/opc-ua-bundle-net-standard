@@ -5,12 +5,12 @@
 	xmlns:opc="http://opcfoundation.org/UA/ModelDesign.xsd" xsi:schemaLocation="http://opcfoundation.org/UA/ModelDesign.xsd ../../../../schema/UAModelDesign.xsd"
   xmlns:ua="http://opcfoundation.org/UA/"
   xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
-	xmlns="http://technosoftware.com/WorkshopServerForms/Operations"
-  TargetNamespace="http://technosoftware.com/WorkshopServerForms/Operations"
+	xmlns="http://technosoftware.com/WorkshopServerConsole/Operations"
+  TargetNamespace="http://technosoftware.com/WorkshopServerConsole/Operations"
 >
   <opc:Namespaces>
     <opc:Namespace Name="OpcUa" Prefix="Opc.Ua" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd">http://opcfoundation.org/UA/</opc:Namespace>
-    <opc:Namespace Name="Operations" Prefix="Technosoftware.WorkshopServerForms.Operations" InternalPrefix="WorkshopServerForms.Operations">http://technosoftware.com/WorkshopServerForms/Operations</opc:Namespace>
+    <opc:Namespace Name="Operations" Prefix="Technosoftware.WorkshopServerConsole.Operations" InternalPrefix="WorkshopServerConsole.Operations">http://technosoftware.com/WorkshopServerConsole/Operations</opc:Namespace>
   </opc:Namespaces>
 
   <opc:Variable SymbolicName="SetPoint" DataType="ua:Double" TypeDefinition="ua:AnalogItemType"></opc:Variable>
